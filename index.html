@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Someone Special</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+        /* @import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Kalam:wght@300;400;700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap'); */
+
+        body {
+            background: linear-gradient(135deg, #e29fff 0%, #ffea96 100%);
+            color: #333;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(90deg, #9946ff 0%, #ff4331 100%);
+
+            padding: 2em 0;
+            transition: background-color 0.5s;
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            margin-top: 50px;
+            font-weight: 900;
+            color: #fff;
+            font-size: 81px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .curve {
+            background: linear-gradient(90deg, #9946ff 0%, #ff4331 100%);
+            height: 150px;
+            position: relative;
+            z-index: 0;
+            clip-path: ellipse(75% 100% at 50% 0%);
+        }
+
+        .content {
+            padding: 2em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #bb88fa 0%, #fc4534 100%);
+            height: 100px;
+            color: white;
+            border: none;
+            padding: 0px 20px;
+            font-size: 1em;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #af7ac5;
+        }
+
+        .message {
+            display: none;
+            margin-top: 1em;
+            font-weight: 900;
+            font-size: 25px;
+            color: #8000ff;
+        }
+
+        .animate {
+            animation: fadeIn 2s;
+
+        }
+
+        img {
+            margin: 30px 20px;
+            height: 300px;
+            width: 300px;
+        }
+
+        p {
+            font-family: 'Amita', cursive;
+            font-size: 25px;
+        }
+
+        .name {
+            font-family: 'Amita', cursive;
+            font-size: 1em;
+            font-weight: 900;
+            color: #403d3e;
+        }
+
+
+        .foot {
+            font-family: 'dancing';
+            font-weight: 800;
+            position: relative;
+            top: 45%;
+
+
+            color: #fff;
+            font-size: 15px;
+            height: 50px;
+
+        }
+
+
+        footer {
+            background: linear-gradient(135deg, #c800e6 0%, #ff210d 100%);
+            position: relative;
+            height: 150px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>For Someone Special</h1>
+    </header>
+    <div class="curve"></div>
+    <div class="content">
+        <p>Dear <span class="name">Name</span>,</p>
+        <p>I've created this page to let you know just how much you mean to me. Your smile brightens my day and <br>your
+            presence makes the world a better place. I may not know you well, but my eyes got Shines when I see you.</p>
+        <p>You are the sunshine on a rainy day, the rainbow after the storm, and the star that lights up my night.</p>
+        <img src="lovely flowers.png" alt="Beautiful Image">
+        <br>
+        <button onclick="showMessage()">
+            <p>Click for a Surprise</p>
+        </button>
+
+        <p id="message" class="message">You are truly amazing, and I hope we can get to know each other better!</p>
+        <p style="margin: 30px; line-height: 2;">Forever yours,<br><span class="name">Name</span></p>
+    </div>
+    <footer>
+        <div class="foot">@Arvit_Kumar_77</div>
+    </footer>
+    <script>
+        function showMessage() {
+            const message = document.getElementById('message');
+            message.style.display = 'block';
+            message.classList.add('animate');
+            setTimeout(showAlert, 2000); // Show alert after 2 seconds
+        }
+
+        function showAlert() {
+            alert("You liked it!");
+        }
+    </script>
+</body>
+
+</html>
