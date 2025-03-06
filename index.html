@@ -22,12 +22,27 @@
         }
 
         header {
-            background: linear-gradient(90deg, #9946ff 0%, #ff4331 100%);
-
+            background: linear-gradient(90deg, #ff46e3 0%, #ff4331 100%);
             padding: 2em 0;
             transition: background-color 0.5s;
             position: relative;
             z-index: 1;
+            animation: gradientMove 5s infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         header h1 {
@@ -39,11 +54,13 @@
         }
 
         .curve {
-            background: linear-gradient(90deg, #9946ff 0%, #ff4331 100%);
+            background: linear-gradient(90deg, #ff46e3 0%, #ff4331 100%);
             height: 150px;
             position: relative;
             z-index: 0;
             clip-path: ellipse(75% 100% at 50% 0%);
+            animation: gradientMove 5s infinite;
+            background-size: 200% 200%;
         }
 
         .content {
@@ -59,7 +76,7 @@
         }
 
         button {
-            background: linear-gradient(135deg, #bb88fa 0%, #fc4534 100%);
+            background: linear-gradient(135deg, #ff1e65 0%, #ff00e6 100%);
             height: 100px;
             color: white;
             border: none;
@@ -68,10 +85,8 @@
             border-radius: 40px;
             cursor: pointer;
             transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #af7ac5;
+            animation: gradientMove 5s infinite;
+            background-size: 200% 200%;
         }
 
         .message {
@@ -84,11 +99,10 @@
 
         .animate {
             animation: fadeIn 2s;
-
         }
 
         img {
-            margin: 30px 0px;
+            margin: 30px 20px;
             height: 300px;
             width: 300px;
         }
@@ -105,25 +119,22 @@
             color: #403d3e;
         }
 
-
         .foot {
             font-family: 'dancing';
             font-weight: 800;
             position: relative;
             top: 45%;
-
-
             color: #fff;
             font-size: 15px;
             height: 50px;
-
         }
 
-
         footer {
-            background: linear-gradient(135deg, #c800e6 0%, #ff210d 100%);
+            background: linear-gradient(135deg, #c800e6 0%, #ff0d9e 100%);
             position: relative;
             height: 150px;
+            animation: gradientMove 5s infinite;
+            background-size: 300% 100%;
         }
 
         @keyframes fadeIn {
