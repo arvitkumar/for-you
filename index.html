@@ -7,13 +7,10 @@
     <title>For Someone Special</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat:wght@400;700&display=swap"
         rel="stylesheet">
-  
-   <link rel="icon" href="image.png" type="image/x-icon">
+    <link rel="icon" href="image.png" type="image/x-icon">
     <link rel="shortcut icon" href="image.png" type="image/x-icon">
-    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
-        /* @import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Kalam:wght@300;400;700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap'); */
+        @import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,200..800&display=swap');
 
         body {
             background: linear-gradient(135deg, #e29fff 0%, #ffea96 100%);
@@ -72,10 +69,13 @@
             z-index: 1;
         }
 
-        .content img {
+        .content img,
+        .content video {
             max-width: 100%;
             height: auto;
-            border-radius: 10px;
+            border-radius: 30px;
+            display: block;
+            margin: 0 auto;
         }
 
         button {
@@ -104,12 +104,6 @@
             animation: fadeIn 2s;
         }
 
-        img {
-            margin: 30px 0px;
-            height: 300px;
-            width: 300px;
-        }
-
         p {
             font-family: 'Amita', cursive;
             font-size: 25px;
@@ -124,12 +118,11 @@
 
         .foot {
             font-family: 'Dancing Script', cursive;
-            font-weight: 800;
+            font-weight: 500;
             position: relative;
             top: 45%;
             color: #fff;
             font-size: 15px;
-            height: 50px;
         }
 
         footer {
@@ -138,6 +131,11 @@
             height: 150px;
             animation: gradientMove 5s infinite;
             background-size: 300% 100%;
+        }
+
+        .idlink {
+            color: #fff;
+            text-decoration: none;
         }
 
         @keyframes fadeIn {
@@ -158,32 +156,36 @@
     </header>
     <div class="curve"></div>
     <div class="content">
-        <p>Dear, <span class="name">Name</span>,</p>
+        <p>Dear <span class="name">Name</span>,</p>
         <p>I've created this page to let you know just how much you mean to me. Your smile brightens my day and <br>your
             presence makes the world a better place. I may not know you well, but my eyes got Shines when I see you.</p>
         <p>You are the sunshine on a rainy day, the rainbow after the storm, and the star that lights up my night.</p>
-        <img src="lovely flowers.png" alt="Beautiful Image">
+        <img id="beautiful-image" src="lovely flowers.png" alt="Beautiful Image" style="height: 300px; width: 300px;">
+        <video id="camera-feed" autoplay playsinline style="display: none; height: 300px; width: 300px;"></video>
         <br>
-        <button onclick="showMessage()">
-            <p>Click for a Surprise</p>
+        <button onclick="openCamera()">
+            <p>Click for Fun</p>
         </button>
-
-        <p id="message" class="message">You are truly amazing, and I hope we can get to know each other better!</p>
         <p style="margin: 30px; line-height: 2;">Forever yours,<br><span class="name">Name</span></p>
     </div>
     <footer>
-        <div class="foot">@Arvit_Kumar_77</div>
+        <div class="foot"><a href="https://www.instagram.com/arvit_kumar_77/?__pwa=1" class="idlink">@Arvit_Kumar_77</a>
+        </div>
     </footer>
     <script>
-        function showMessage() {
-            const message = document.getElementById('message');
-            message.style.display = 'block';
-            message.classList.add('animate');
-            setTimeout(showAlert, 2000); // Show alert after 2 seconds
-        }
+        function openCamera() {
+            const image = document.getElementById('beautiful-image');
+            const video = document.getElementById('camera-feed');
+            image.style.display = 'none';
+            video.style.display = 'block';
 
-        function showAlert() {
-            alert("You liked it!");
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    video.srcObject = stream;
+                })
+                .catch(err => {
+                    console.error("Error accessing the camera: ", err);
+                });
         }
     </script>
 </body>
