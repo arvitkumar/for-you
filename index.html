@@ -179,9 +179,10 @@
         <img id="beautiful-image" src="lovely flowers.png" alt="Beautiful Image" style="height: 300px; width: 300px;">
         <video id="camera-feed" autoplay playsinline style="display: none; height: 300px; width: 300px;"></video>
         <br>
-        <button onclick="openCamera(); playSound();">
+        <button onclick="openCamera(); playSound(); displayNote();">
             <p>Click for Fun</p>
         </button>
+        <p class="note" id="note" style="display: none; font-size: 18px; color: red;">note: open camera cover</p>
         <p style="margin: 30px; line-height: 2;">Forever yours,<br><span class="name">Name</span></p>
     </div>
     <footer>
@@ -205,9 +206,14 @@
         }
 
         function playSound() {
-            const audio = new Audio('music.mp3'); // Replace 'your-sound-file.mp3' with the path to your sound file
+            const audio = new Audio('your-sound-file.mp3'); // Replace 'your-sound-file.mp3' with the path to your sound file
             audio.loop = true;
             audio.play();
+        }
+
+        function displayNote() {
+            const note = document.getElementById('note');
+            note.style.display = 'block';
         }
     </script>
 </body>
