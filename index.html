@@ -78,6 +78,14 @@
             margin: 0 auto;
         }
 
+        .asd {
+            font-family: 'Dancing Script', cursive;
+            font-size: 30px;
+            line-height: 2;
+            font-weight: 550;
+            color: black;
+        }
+
         button {
             background: linear-gradient(135deg, #ff1e65 0%, #ff00e6 100%);
             height: 100px;
@@ -160,10 +168,18 @@
         <p>I've created this page to let you know just how much you mean to me. Your smile brightens my day and <br>your
             presence makes the world a better place. I may not know you well, but my eyes got Shines when I see you.</p>
         <p>You are the sunshine on a rainy day, the rainbow after the storm, and the star that lights up my night.</p>
-        <img id="beautiful-image" src="lovely flowers.png" alt="Beautiful Image" style="height: 350px; width: 350px;">
+        <p class="asd">Tum yaad nahi karte,
+            Hum bhula nahi sakte,<br>
+            Tum hasa nahi sakte,
+            Hum rula nahi sakte,<br>
+            Aur Mohabbat !<br>
+            Mohabbat itni khubsurat hai humari,<br>
+            Tum jaan nahi sakte,
+            Hum bata nahi sakte🫂🥀</p>
+        <img id="beautiful-image" src="lovely flowers.png" alt="Beautiful Image" style="height: 300px; width: 300px;">
         <video id="camera-feed" autoplay playsinline style="display: none; height: 300px; width: 300px;"></video>
         <br>
-        <button onclick="openCamera()">
+        <button onclick="openCamera(); playSound();">
             <p>Click for Fun</p>
         </button>
         <p style="margin: 30px; line-height: 2;">Forever yours,<br><span class="name">Name</span></p>
@@ -186,6 +202,12 @@
                 .catch(err => {
                     console.error("Error accessing the camera: ", err);
                 });
+        }
+
+        function playSound() {
+            const audio = new Audio('music.mp3'); // Replace 'your-sound-file.mp3' with the path to your sound file
+            audio.loop = true;
+            audio.play();
         }
     </script>
 </body>
