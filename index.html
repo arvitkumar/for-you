@@ -2,15 +2,20 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>For Someone Special</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat:wght@400;700&display=swap"
+   
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat:wght@400;700&family=Amita:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="icon" href="image.png" type="image/x-icon">
     <link rel="shortcut icon" href="image.png" type="image/x-icon">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,200..800&display=swap');
+   
+        :root {
+            --accent-color: #ff46e3;
+        }
 
         body {
             background: linear-gradient(135deg, #e29fff 0%, #ffea96 100%);
@@ -19,12 +24,13 @@
             text-align: center;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
+            position: relative;
         }
 
         header {
-            background: linear-gradient(90deg, #ff46e3 0%, #ff4331 100%);
+            background: linear-gradient(90deg, var(--accent-color) 0%, #ff4331 100%);
             padding: 2em 0;
-            transition: background-color 0.5s;
             position: relative;
             z-index: 1;
             animation: gradientMove 5s infinite;
@@ -54,7 +60,7 @@
         }
 
         .curve {
-            background: linear-gradient(90deg, #ff46e3 0%, #ff4331 100%);
+            background: linear-gradient(90deg, var(--accent-color) 0%, #ff4331 100%);
             height: 150px;
             position: relative;
             z-index: 0;
@@ -76,6 +82,12 @@
             border-radius: 30px;
             display: block;
             margin: 0 auto;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .content img:hover,
+        .content video:hover {
+            transform: scale(1.03);
         }
 
         .asd {
@@ -87,29 +99,29 @@
         }
 
         button {
-            background: linear-gradient(135deg, #ff1e65 0%, #ff00e6 100%);
+            background: linear-gradient(135deg, var(--accent-color) 0%, #ff00e6 100%);
             height: 100px;
             color: white;
             border: none;
-            padding: 0px 20px;
+            padding: 0 20px;
             font-size: 1em;
             border-radius: 40px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             animation: gradientMove 5s infinite;
             background-size: 200% 200%;
+            outline: none;
         }
 
-        .message {
-            display: none;
-            margin-top: 1em;
+        button:hover {
+            transform: scale(1.07);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .note {
             font-weight: 900;
             font-size: 25px;
             color: #8000ff;
-        }
-
-        .animate {
-            animation: fadeIn 2s;
         }
 
         p {
@@ -146,74 +158,423 @@
             text-decoration: none;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .heart {
+            position: fixed;
+            bottom: 0;
+            font-size: 24px;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
             }
 
-            to {
-                opacity: 1;
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
             }
+        }
+
+        @keyframes floatDown {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(-360deg);
+                opacity: 0;
+            }
+        }
+
+        .heart.floatUp {
+            animation: floatUp 4s linear forwards;
+        }
+
+        .heart.floatDown {
+            animation: floatDown 4s linear forwards;
+        }
+
+        .petal {
+            position: fixed;
+            font-size: 20px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        @keyframes driftUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes driftDown {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(-360deg);
+                opacity: 0;
+            }
+        }
+
+        .petal.driftUp {
+            animation: driftUp 8s linear forwards;
+        }
+
+        .petal.driftDown {
+            animation: driftDown 8s linear forwards;
+        }
+
+        .section {
+            padding: 3em 1em;
+            margin: 2em auto;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            max-width: 800px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            font-family: 'Amita', cursive;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        #quote-box {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px 30px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            font-family: 'Dancing Script', cursive;
+            font-size: 32px;
+            color: #ff1493;
+            text-align: center;
+            margin: 50px auto;
+            max-width: 90%;
+        }
+
+        #name-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        #name-modal div {
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 90%;
+        }
+
+        #name-modal h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        #user-name,
+        #fav-color {
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 80%;
+            margin: 5px 0;
+        }
+
+        #submit-name {
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .parallax-layer {
+            pointer-events: none;
+            position: absolute;
+            z-index: 0;
         }
     </style>
 </head>
 
 <body>
+
+    <div id="name-modal">
+        <div>
+            <h2>What's Your Name and Favorite Color?</h2>
+            <input type="text" id="user-name" placeholder="Your name here" />
+            <br>
+            <label for="fav-color">Favorite Color:</label>
+            <input type="color" id="fav-color" value="#ff69b4" />
+            <br>
+            <button id="submit-name">Submit</button>
+        </div>
+    </div>
+
+    <div class="parallax-layer rellax" data-rellax-speed="4" style="top: 80px; left: 10%;">
+        <span style="font-size:60px;">✨</span>
+    </div>
+    <div class="parallax-layer rellax" data-rellax-speed="-3" style="top: 250px; right: 10%;">
+        <span style="font-size:50px;">💖</span>
+    </div>
+    <div class="parallax-layer rellax" data-rellax-speed="2"
+        style="top: 500px; left: 50%; transform: translateX(-50%);">
+        <span style="font-size:70px;">🌟</span>
+    </div>
+
     <header>
-        <h1>For Someone Special</h1>
+        <h1 class="animate-on-scroll rellax" data-rellax-speed="-2">For Someone Special</h1>
     </header>
-    <div class="curve"></div>
+    <div class="curve rellax" data-rellax-speed="2"></div>
+
     <div class="content">
-        <p>Dear <span class="name">Name</span>,</p>
-        <p>I've created this page to let you know just how much you mean to me. Your smile brightens my day and <br>your
-            presence makes the world a better place. I may not know you well, but my eyes got Shines when I see you.</p>
-        <p>You are the sunshine on a rainy day, the rainbow after the storm, and the star that lights up my night.</p>
-        <p class="asd">Tum yaad nahi karte,
+        <p class="animate-on-scroll">Dear <span class="name">Name</span>,</p>
+        <p class="animate-on-scroll">
+            I've created this page to let you know just how much you mean to me. Your smile brightens my day and<br>
+            your presence makes the world a better place. My eyes always sparkle the moment I see you.
+        </p>
+        <p class="animate-on-scroll">
+            You are the sunshine on a rainy day, the rainbow after the storm, and the star that lights up my night.
+        </p>
+        <p class="asd animate-on-scroll">
+            Tum yaad nahi karte,
             Hum bhula nahi sakte,<br>
             Tum hasa nahi sakte,
             Hum rula nahi sakte,<br>
             Aur Mohabbat !<br>
-            Mohabbat itni khubsurat hai humari,<br>
-            Tum jaan nahi sakte,
-            Hum bata nahi sakte🫂🥀</p>
-        <img id="beautiful-image" src="lovely flowers.png" alt="Beautiful Image" style="height: 300px; width: 300px;">
-        <video id="camera-feed" autoplay playsinline style="display: none; height: 300px; width: 300px;"></video>
+            Mohabbat itni khubsurat hai humari,
+            Tum jaan nahi sakte,<br>
+            Hum bata nahi sakte🫂🥀
+        </p>
+        <img id="beautiful-image" class="animate-on-scroll" src="lovely flowers.png" alt="Beautiful Image"
+            style="height:300px; width:300px;">
+        <video id="camera-feed" class="animate-on-scroll" autoplay playsinline
+            style="display: none; height:300px; width:300px;"></video>
         <br>
-        <button onclick="openCamera(); playSound(); displayNote();">
+        <button id="checkButton" class="animate-on-scroll">
             <p>Check it</p>
         </button>
-        <p class="note" id="note" style="display: none; font-size: 18px; color: red;">note: open camera cover</p>
-        <p style="margin: 30px; line-height: 2;">Forever yours,<br><span class="name">Name</span></p>
+        <audio id="background-music" src="music.mp3"></audio>
+        <p class="note" id="note" style="display:none; font-size:18px; color:red;">note: open camera cover</p>
+        <p class="animate-on-scroll" style="margin:30px; line-height:2;">
+            Forever yours,<br>
+            <span class="name">Name</span>
+        </p>
     </div>
+
+    
+    <div id="quote-box" class="animate-on-scroll"></div>
+
+ 
+    <div class="section animate-on-scroll">
+        <h2>Sweet Memories</h2>
+        <p>
+            I remember our first glance—a moment when time slowed down and whispered promises of forever.
+        </p>
+        <img src="memory1.jpg" alt="Memory" style="max-width:300px; border-radius:20px;">
+    </div>
+    <div class="section animate-on-scroll">
+        <h2>Our Journey</h2>
+        <p>
+            Every step we take together paints a picture of love, laughter, and understanding.
+        </p>
+        <img src="memory2.jpg" alt="Journey" style="max-width:300px; border-radius:20px;">
+    </div>
+    <div class="section animate-on-scroll">
+        <h2>Poetic Whispers</h2>
+        <p>
+            In each gentle breeze, I hear the sweet echoes of your name—a melody that fills my heart with joy.
+        </p>
+    </div>
+    <div class="section animate-on-scroll">
+        <h2>A Promise For Tomorrow</h2>
+        <p>
+            Each promise we make paves the way for an everlasting bond, bright as our shared future.
+        </p>
+        <img src="memory3.jpg" alt="Promise" style="max-width:300px; border-radius:20px;">
+    </div>
+
     <footer>
-        <div class="foot"><a href="https://www.instagram.com/arvit_kumar_77/?__pwa=1" class="idlink">@Arvit_Kumar_77</a>
+        <div class="foot">
+            <a href="https://www.instagram.com/arvit_kumar_77/?__pwa=1" class="idlink">@Arvit_Kumar_77</a>
         </div>
     </footer>
-    <script>
-        function openCamera() {
-            const image = document.getElementById('beautiful-image');
-            const video = document.getElementById('camera-feed');
-            image.style.display = 'none';
-            video.style.display = 'block';
 
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>
+    <script>
+        $(document).ready(function () {
+           
+            var rellax = new Rellax('.rellax');
+
+           
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        $(entry.target).addClass("visible");
+                        
+                        if (entry.target.id === "quote-box" && !$(entry.target).data("typed")) {
+                            $(entry.target).data("typed", true);
+                            typeWriterEffect("#quote-box", "Every moment with you is a dream come true.", 80);
+                        }
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            $(".animate-on-scroll").each(function () {
+                observer.observe(this);
+            });
+
+            
+            $("#checkButton").on("click", function () {
+                openCamera();
+                displayNote();
+            });
+            $("#checkButton").on("click", function () {
+                openCamera();
+                displayNote();
+
+                var music = document.getElementById("background-music");
+                music.play();
+            });
+
+         
+            $("#submit-name").on("click", function () {
+                var username = $("#user-name").val().trim();
+                var favColor = $("#fav-color").val().trim();
+                if (username) {
+                    $(".name").text(username);
+                   
+                    document.documentElement.style.setProperty('--accent-color', favColor);
+                  
+                    $("header").css("background", "linear-gradient(90deg, " + favColor + " 0%, #ff4331 100%)");
+                    $(".curve").css("background", "linear-gradient(90deg, " + favColor + " 0%, #ff4331 100%)");
+                    $("button").css("background", "linear-gradient(135deg, " + favColor + " 0%, #ff00e6 100%)");
+                    $("#name-modal").fadeOut(500, function () { $(this).remove(); });
+                }
+            });
+
+            $("#user-name").on("keypress", function (e) {
+                if (e.which === 13) { $("#submit-name").click(); }
+            });
+        });
+
+        window.scrollDirection = "down";
+        window.lastScrollTop = $(window).scrollTop();
+        $(window).on("scroll", function () {
+            var st = $(this).scrollTop();
+            window.scrollDirection = (st > window.lastScrollTop) ? "down" : "up";
+            window.lastScrollTop = st;
+        });
+
+        function floatHeart() {
+            const hearts = ["♥", "❤", "❥", "💖", "💘"];
+            const colors = ["#ff69b4", "#ff1493", "#ff6eb4", "#ff85a1", "#ff5cab"];
+            let heartSymbol = hearts[Math.floor(Math.random() * hearts.length)];
+            let heartColor = colors[Math.floor(Math.random() * colors.length)];
+            let heart = $('<div class="heart">' + heartSymbol + '</div>');
+            let leftPos = Math.random() * $(window).width();
+            heart.css({ "left": leftPos + "px", "color": heartColor });
+            if (window.scrollDirection === "down") {
+                heart.addClass("floatDown");
+            } else {
+                heart.addClass("floatUp");
+            }
+            $("body").append(heart);
+            setTimeout(() => { heart.remove(); }, 4000);
+        }
+        setInterval(floatHeart, 700);
+
+        function floatPetal() {
+            const petals = ["🌸", "🌼", "🌺", "🌻", "💮"];
+            let petalSymbol = petals[Math.floor(Math.random() * petals.length)];
+            let petal = $('<div class="petal">' + petalSymbol + '</div>');
+            let leftPos = Math.random() * $(window).width();
+            petal.css({ "left": leftPos + "px" });
+            if (window.scrollDirection === "down") {
+                petal.addClass("driftDown");
+            } else {
+                petal.addClass("driftUp");
+            }
+            $("body").append(petal);
+            setTimeout(() => { petal.remove(); }, 8000);
+        }
+        setInterval(floatPetal, 2000);
+
+        function typeWriterEffect(selector, text, delay = 100) {
+            let element = $(selector);
+            element.text('');
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.append(text.charAt(i));
+                    i++;
+                    setTimeout(type, delay);
+                }
+            }
+            type();
+        }
+
+        function openCamera() {
+            const $image = $('#beautiful-image');
+            const $video = $('#camera-feed');
+            $image.fadeOut(500, function () {
+                $video.fadeIn(500);
+            });
             navigator.mediaDevices.getUserMedia({ video: true })
                 .then(stream => {
-                    video.srcObject = stream;
+                    $video.get(0).srcObject = stream;
                 })
                 .catch(err => {
                     console.error("Error accessing the camera: ", err);
                 });
         }
-
-        function playSound() {
-            const audio = new Audio('music.mp3'); 
-            audio.loop = true;
-            audio.play();
-        }
-
         function displayNote() {
-            const note = document.getElementById('note');
-            note.style.display = 'block';
+            $("#note").fadeIn(1000);
         }
     </script>
 </body>
